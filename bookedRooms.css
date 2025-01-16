@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+nav{
+    margin:10px 0;
+    min-height: 8vh;
+    background-color: #f5f5f5;
+    font-family: 'Poppins', sans-serif;
+}
+nav img{
+    width: 169px;
+    height: 44px;
+}
+nav ul{
+    display: flex;
+    align-items: center;
+    width: 50%;
+    list-style: none;
+    gap: 30px;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #5E5E5E;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 0.4s;
+}
+nav ul li a:hover{
+    color: #75C5CF;
+}
+nav ul li.active {
+    background-color: #75C5CF;
+}
+
+nav ul li.active a {
+    color: blue; 
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.hotelImg, .roomImg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+button.CancelBtn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.CancelBtn:hover {
+    background-color: darkred;
+}
+footer{
+    background-color: #272727;
+    color: white;
+    height: 80px;
+  }
+  footer p{
+      padding:40px 0 0 200px;
+      font-size: 13px;
+      color: #A5A5A5;
+  }
