@@ -3,43 +3,122 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    opacity: 0;
+}
+header {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; 
+    transform: translateY(0); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
 
-nav{
-    margin:10px 0;
+header.sticky {
+    position: fixed;
+    top: 0;
+    background-color: #fff; 
+    transform: translateY(0); 
+}
+
+
+nav {
+    padding: 20px 0;
     min-height: 8vh;
-    background-color: #f5f5f5;
+    padding-left: 100px;
     font-family: 'Poppins', sans-serif;
 }
-nav img{
-    position: relative;
+
+nav img {
     width: 169px;
     height: 44px;
 }
-nav  img::after{
-    content: '';
-    width: 10px;
-    height: 30px;
-    background: black;
-    display: inline-block;
-    position: absolute; 
-    right: -15px; 
-    top: 50%; 
-    transform: translateY(-50%); 
+.logo-container {
+    display: inline-flex;
+    position: relative; 
+    padding-right: 20px; 
 }
-nav ul{
+
+.logo-container::after {
+    content: "";
+    background-color: #ddd;
+    width: 1px;
+    height: 84px;
+    top: -5px;
+    position: absolute; 
+    left: 100%; 
+    margin-top: -15px; 
+}
+
+nav ul {
     display: flex;
     align-items: center;
     margin-left: 90px;
     width: 50%;
     list-style: none;
     gap: 30px;
+    position: relative;
 }
-nav ul li a{
+
+nav ul li a {
     text-decoration: none;
     color: #5E5E5E;
     font-size: 16px;
     font-weight: 700;
-    transition: 0.4s;
+    transition: color 0.4s ease; 
+}
+
+nav ul li a:hover {
+    color: #75C5CF;
+}
+
+nav ul li.active {
+    background-color: #75C5CF;
+}
+
+nav ul li.active a {
+    color: white;
+}
+.goTopDiv{
+    background-color: rgba(221, 221, 221, 0.5);
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #75C5CF;
+    right: 40px;
+    bottom: 70px;
+    opacity: 0;
+    transition: 1s ease;
+}
+.goTopDiv.visible {
+    opacity: 1; 
+}
+.goTopDiv i{
+    color: #75C5CF;
+    font-size: 17px;
+}
+.goTopDiv:hover i{
+    animation: bounceArrow 1.5s infinite; 
+    color: white;
+}
+.goTopDiv:hover{
+    background-color: #75C5CF;
+}
+
+
+@keyframes bounceArrow {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
 }
 
 footer{
@@ -81,6 +160,9 @@ footer{
         width: 100%;
         height: 250px;
         object-fit: cover;
+    }
+    #CategroryList{
+        margin-top: 50px;
     }
     #CategroryList li{
         padding: 12px 15px;

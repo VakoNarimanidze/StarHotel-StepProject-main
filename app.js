@@ -1,5 +1,6 @@
 const roomsSection = document.getElementById("rooms-container");
 const seeHotels = document.getElementById("seeHotels");
+const header = document.querySelector('header');
 
 
 fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetAll")
@@ -56,3 +57,44 @@ function goToDetails(roomId) {
     console.log(roomId);
     
 }
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 70) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+
+        const parentOfFiveStars = document.querySelector(".parentOfFiveStars");
+
+        setTimeout(() => {
+            parentOfFiveStars.classList.add("visible");
+        }, 1500); 
+    }, 1000); 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const goTopDiv = document.querySelector(".goTopDiv");
+
+    goTopDiv.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= 300) {
+            goTopDiv.classList.add("visible"); 
+        } else {
+            goTopDiv.classList.remove("visible"); 
+        }
+    });
+});

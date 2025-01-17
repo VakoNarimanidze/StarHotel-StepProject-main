@@ -1,5 +1,6 @@
 const ul = document.getElementById("CategroryList");
 const section = document.querySelector("section");
+const header = document.querySelector('header')
 
 function showAllHotels() {
     fetch("https://hotelbooking.stepprojects.ge/api/Hotels/GetCities")
@@ -79,3 +80,45 @@ function goToHotelRooms(hotelId) {
     sessionStorage.setItem('hotelId', hotelId); 
     window.location.href = 'rooms.html';  
 }
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 70) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+
+        const parentOfFiveStars = document.querySelector(".parentOfFiveStars");
+
+        setTimeout(() => {
+            parentOfFiveStars.classList.add("visible");
+        }, 1500); 
+    }, 1000); 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const goTopDiv = document.querySelector(".goTopDiv");
+
+    goTopDiv.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= 300) {
+            goTopDiv.classList.add("visible"); 
+        } else {
+            goTopDiv.classList.remove("visible"); 
+        }
+    });
+});

@@ -7,7 +7,7 @@ const guestsInput = document.getElementById('Guests');
 const filterForm = document.getElementById('filterForm');
 const priceDisplay = document.getElementById('priceDisplay');
 const hotelid = sessionStorage.getItem("hotelId");
-
+const header = document.querySelector('header')
 const categoryList = document.getElementById("CategoryList");
 
 console.log("Hotel ID from sessionStorage:", hotelid);
@@ -241,14 +241,29 @@ function goToDetails(roomId) {
     console.log(roomId);
 }
 
-flatpickr("#checkOut", {
-    dateFormat: "Y-m-d",
-    placeholder: "Check-Out"
+document.addEventListener('DOMContentLoaded', function () {
+    const today = new Date();
+    const day = String(today.getDate()).padStart(2, '0'); 
+    const month = String(today.getMonth() + 1).padStart(2, '0');  
+    const year = today.getFullYear();
+
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+
+    flatpickr("#checkIn", {
+        dateFormat: "Y-m-d", 
+        placeholder: "Check-In",
+        minDate: formattedDate 
+    });
+
+    flatpickr("#checkOut", {
+        dateFormat: "Y-m-d", 
+        placeholder: "Check-Out",
+        minDate: formattedDate 
+    });
 });
-flatpickr("#checkIn", {
-    dateFormat: "Y-m-d",
-    placeholder: "Check-In"
-});
+
 
 const fromSlider = document.getElementById('fromSlider');
 const toSlider = document.getElementById('toSlider');
@@ -296,3 +311,39 @@ if (!hotelid) {
 } else {
     fetchHotelRooms(hotelid);
 }
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 70) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+    }, 1000); 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const goTopDiv = document.querySelector(".goTopDiv");
+
+    goTopDiv.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= 300) {
+            goTopDiv.classList.add("visible"); 
+        } else {
+            goTopDiv.classList.remove("visible"); 
+        }
+    });
+});

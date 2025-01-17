@@ -1,6 +1,7 @@
 let roomId = sessionStorage.getItem("room");
 let form = document.querySelector('form');
 let h3 = document.getElementById("RoomName");
+let header = document.querySelector("header")
 console.log(roomId);
 
 fetch(`https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${roomId}`)
@@ -15,6 +16,11 @@ fetch(`https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${roomId}`)
         h3.appendChild(span);
         h3.appendChild(p);
         console.log(span);
+
+
+        const bookedDates = room.bookedDates
+        console.log(bookedDates);
+        
         
         const details = document.getElementById('details');
         details.innerHTML = `
@@ -143,7 +149,7 @@ fetch(`https://hotelbooking.stepprojects.ge/api/Rooms/GetRoom/${roomId}`)
         flatpickr("#checkOut", {
             dateFormat: "Y-m-d", 
             placeholder: "Check-Out",
-            minDate: formattedDate 
+            minDate: formattedDate
         });
     });
     
@@ -220,3 +226,43 @@ function goToDetails(roomId) {
     sessionStorage.setItem('room', roomId);
     window.location.href = 'details.html'; 
 }
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 70) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const goTopDiv = document.querySelector(".goTopDiv");
+
+    goTopDiv.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= 300) {
+            goTopDiv.classList.add("visible"); 
+        } else {
+            goTopDiv.classList.remove("visible"); 
+        }
+    });
+});
+
+const infoIcon = document.getElementById("Data-content");
+
+infoIcon.addEventListener("mouseover", function() {
+    const rect = infoIcon.getBoundingClientRect();
+    tooltip.style.position = "absolute";
+    tooltip.style.left = rect.left + "px";
+    tooltip.style.top = rect.top - 30 + "px";  // Position the tooltip above the icon
+
+    infoIcon.addEventListener("mouseout", () => {
+        tooltip.remove();
+    });
+});

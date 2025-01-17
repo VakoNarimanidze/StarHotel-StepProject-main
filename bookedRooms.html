@@ -3,26 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarHotel-BookedRooms</title>
+    <title>BookedRooms</title>
     <link rel="stylesheet" href="bookedRooms.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <div class="container">
     <header>
         <nav>
-        <ul>
-            <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="./rooms.html">Rooms</a></li>
-            <li><a href="./hotels.html">Hotels</a></li>
-            <li><a href="./bookedRooms.html">Booked Rooms</a></li>
-        </ul>
-    </nav>
-    </header>
-    <table>
-    </table>
+            <ul>
+                <li class="logo-container">
+                    <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
+                </li>
+                <li><a href="./index.html">Home</a></li>
+                <li><a href="./rooms.html">Rooms</a></li>
+                <li><a href="./hotels.html">Hotels</a></li>
+                <li><a href="./bookedRooms.html">Booked Rooms</a></li>
+            </ul>
+        </nav>
+    </header>    
+    <div class="goTopDiv">
+        <i id="goTop" class="fas fa-angle-up"></i>
     </div>
-    <footer>    
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Hotel</th>
+                    <th>Room</th>
+                    <th>Customer</th>
+                    <th>Status</th>
+                    <th>Check in</th>
+                    <th>Check out</th>
+                    <th>Total Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+    <footer>
         <p>© 2023 IT Academy Step All; Rights Reserved</p>
     </footer>
     <script src="bookedRooms.js"></script>

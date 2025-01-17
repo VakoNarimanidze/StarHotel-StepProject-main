@@ -1,4 +1,5 @@
 const table = document.querySelector("table");
+const header = document.querySelector("header");
 
 async function fetchRoomDetails(roomID) {
     try {
@@ -38,6 +39,10 @@ async function fetchBookings() {
                 continue;
             }
 
+            // Format the check-in and check-out dates
+            const formattedCheckInDate = new Date(item.checkInDate).toLocaleDateString();
+            const formattedCheckOutDate = new Date(item.checkOutDate).toLocaleDateString();
+
             const row = document.createElement("tr");
 
             row.innerHTML = `
@@ -70,10 +75,10 @@ async function fetchBookings() {
                     <span class="status">${item.isConfirmed ? 'Booked' : ''}</span>
                 </td>
                 <td class="checkIn">
-                    ${item.checkInDate}
+                    ${formattedCheckInDate}
                 </td>
                 <td class="checkOut">
-                    ${item.checkOutDate}
+                    ${formattedCheckOutDate}
                 </td>
                 <td class="TotalPrice">
                     ${item.totalPrice}
@@ -96,12 +101,10 @@ async function cancelBooking(bookingID) {
     try {
         console.log(`Attempting to cancel booking with ID: ${bookingID}`); 
 
-
         const response = await fetch(`https://hotelbooking.stepprojects.ge/api/Booking/${bookingID}`, {
             method: 'DELETE', 
             headers: {
                 'Content-Type': 'application/json',
-              
             },
         });
 
@@ -123,3 +126,39 @@ async function cancelBooking(bookingID) {
 }
 
 fetchBookings();
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY >= 70) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+});
+
+window.addEventListener("DOMContentLoaded", () => {
+    document.body.style.opacity = "0";
+    document.body.style.transition = "opacity 1s ease";
+
+    setTimeout(() => {
+        document.body.style.opacity = "1";
+    }, 1000); 
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const goTopDiv = document.querySelector(".goTopDiv");
+
+    goTopDiv.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    });
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY >= 300) {
+            goTopDiv.classList.add("visible"); 
+        } else {
+            goTopDiv.classList.remove("visible"); 
+        }
+    });
+});

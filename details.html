@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StarHotel-RoomDetails</title>
+    <title>Document</title>
     <link rel="stylesheet" href="details.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
@@ -19,14 +19,19 @@
     <header>
         <nav>
             <ul>
-                <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
+                <li class="logo-container">
+                    <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
+                </li>
                 <li><a href="./index.html">Home</a></li>
                 <li><a href="./rooms.html">Rooms</a></li>
                 <li><a href="./hotels.html">Hotels</a></li>
                 <li><a href="./bookedRooms.html">Booked Rooms</a></li>
             </ul>
         </nav>
-    </header>
+    </header>    
+    <div class="goTopDiv">
+        <i id="goTop" class="fas fa-angle-up"></i>
+    </div>
     <div class="container">
         <div class="flex">
             <section id="details"></section>
@@ -35,13 +40,13 @@
                 <h3 id="RoomName"></h3>
                 <form>
                     <div>
-                        <label for="">Check-in <i class="fas fa-info"></i></label>
+                        <label for="">Check-in <span><i id="Data-content" class="fas fa-info"></i></span></label>
                         <input type="date" id="checkIn" name="checkInDate" placeholder="Check-In" min="2025-01-16" />
                         <i class="fa-regular fa-calendar-days firstDateIcon"></i>
                         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                     </div>
                     <div>
-                        <label for="">Check-out <i class="fas fa-info"></i></label>
+                        <label for="">Check-out <span><i class="fas fa-info"></i></span></label>
                         <input type="date" id="checkOut" name="checkOutDate" placeholder="Check-Out" min="2025-01-16" />
                         <i class="fa-regular fa-calendar-days SecondDateIcon"></i>
                         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
