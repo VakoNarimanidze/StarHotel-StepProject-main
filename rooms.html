@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rooms</title>
     <link rel="stylesheet" href="rooms.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 </head>
 
@@ -23,7 +25,7 @@
                 <li><a href="./bookedRooms.html">Booked Rooms</a></li>
             </ul>
         </nav>
-    </header>    
+    </header>
     <div class="goTopDiv">
         <i id="goTop" class="fas fa-angle-up"></i>
     </div>
@@ -33,23 +35,22 @@
         <div class="filter">
             <form id="filterForm">
                 <div class="range_container">
-                    <div class="sliders_control">
-                        <input id="fromSlider" type="range" value="0" min="0" max="1000" />
-                        <input id="toSlider" type="range" value="1000" min="0" max="1000" />
+                    <div class="range-input">
+                        <input type="range" class="range-min" min="0" max="1000" value="0" step="1" name="priceFrom"
+                            id="priceFrom">
+                        <input type="range" class="range-max" min="0" max="1000" value="1000" step="1" name="priceTo"
+                            id="priceTo">
                     </div>
-                    <div class="form_control">
-                        <div class="form_control_container">
-                            <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="1000" />
-                        </div>
-                        <div class="form_control_container">
-                            <input class="form_control_container__time__input" type="number" id="toInput" value="1000" min="0" max="1000" />
-                        </div>
+                    <div class="priceValues">
+                       <input type="text" id="priceFromValue">
+                        <input type="text" id="priceToValue">
                     </div>
                 </div>
 
+
                 <div class="roomtype sameWidth">
                     <label for="">Room Type <i class="fas fa-info"></i></label>
-                    <select id="roomType">
+                    <select name="roomTypeId" id="roomType">
                         <option value="All">Select Room</option>
                         <option value="1">Single Room</option>
                         <option value="2">Double Room</option>
@@ -59,21 +60,21 @@
 
                 <div class="formflex checkIn">
                     <label for="">Check-in <i class="fas fa-info"></i></label>
-                    <input type="date" id="checkIn" placeholder="Check-in">
+                    <input type="date" id="checkIn" name="checkIn" placeholder="Check-in">
                     <i class="fa-regular fa-calendar-days firstDateIcon"></i>
                     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                 </div>
 
                 <div class="formFlex checkOut">
                     <label for="">Check-out <i class="fas fa-info"></i></label>
-                    <input type="date" id="checkOut" placeholder="Check-out">
+                    <input type="date" name="checkOut" id="checkOut" placeholder="Check-out">
                     <i class="fa-regular fa-calendar-days SecondDateIcon"></i>
                     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
                 </div>
 
                 <div class="formFlex Guest">
                     <label for="">Guests</label>
-                    <select name="" id="" class="Guests">
+                    <select name="maximumGuests" id="maximumGuests" class="Guests">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
