@@ -292,10 +292,12 @@ const priceFromValue = document.getElementById('priceFromValue');
 const priceToValue = document.getElementById('priceToValue');
 const progress = document.querySelector('.progress');
 
+// Function to update the progress bar and sync input fields
 function updatePriceRangeBackground() {
     let fromValue = parseInt(priceFrom.value);
     let toValue = parseInt(priceTo.value);
 
+    // Ensure min value is not greater than max value
     if (fromValue > toValue) {
         priceFrom.value = toValue;
         fromValue = toValue;
@@ -308,17 +310,44 @@ function updatePriceRangeBackground() {
     priceFromValue.value = fromValue;
     priceToValue.value = toValue;
 
+    updateProgressBar();
+}
+
+function updateProgressBar() {
     const minValue = parseInt(priceFrom.min);
     const maxValue = parseInt(priceFrom.max);
-    const leftPercent = ((fromValue - minValue) / (maxValue - minValue)) * 100;
-    const rightPercent = ((toValue - minValue) / (maxValue - minValue)) * 100;
+    const leftPercent = ((priceFrom.value - minValue) / (maxValue - minValue)) * 100;
+    const rightPercent = ((priceTo.value - minValue) / (maxValue - minValue)) * 100;
 
     progress.style.left = leftPercent + '%';
     progress.style.width = (rightPercent - leftPercent) + '%';
     progress.style.backgroundColor = '75C5CF';
 }
 
+function handleInputChange() {
+    let fromValue = parseInt(priceFromValue.value) || 0;
+    let toValue = parseInt(priceToValue.value) || 0;
+
+    if (fromValue < priceFrom.min) fromValue = parseInt(priceFrom.min);
+    if (toValue > priceTo.max) toValue = parseInt(priceTo.max);
+
+    if (fromValue > toValue) {
+        fromValue = toValue;
+    }
+    if (toValue < fromValue) {
+        toValue = fromValue;
+    }
+
+    priceFrom.value = fromValue;
+    priceTo.value = toValue;
+
+    updatePriceRangeBackground();
+}
+
 priceFrom.addEventListener('input', updatePriceRangeBackground);
 priceTo.addEventListener('input', updatePriceRangeBackground);
+
+priceFromValue.addEventListener('input', handleInputChange);
+priceToValue.addEventListener('input', handleInputChange);
 
 updatePriceRangeBackground();
