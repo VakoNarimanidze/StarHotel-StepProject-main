@@ -7,9 +7,9 @@ const guestsInput = document.getElementById('Guests');
 const filterForm = document.getElementById('filterForm');
 const priceDisplay = document.getElementById('priceDisplay');
 const hotelid = sessionStorage.getItem("hotelId");
-const header = document.querySelector('header')
+const header = document.querySelector('header');
 const categoryList = document.getElementById("CategoryList");
-const form = document.querySelector('form')
+const form = document.querySelector('form');
 
 console.log("Hotel ID from sessionStorage:", hotelid);
 
@@ -26,7 +26,7 @@ fetch('https://hotelbooking.stepprojects.ge/api/Rooms/GetRoomTypes')
             li.innerText = roomType.name;
             li.addEventListener("click", function () {
                 roomTypeSelect.value = roomType.id;
-                fetchRoomsWithFilters();
+                fetchRoomsByType(roomType.id); 
                 setActiveCategory(li);
             });
             categoryList.appendChild(li);
@@ -36,7 +36,7 @@ fetch('https://hotelbooking.stepprojects.ge/api/Rooms/GetRoomTypes')
         allCategory.innerText = "All";
         allCategory.addEventListener("click", function () {
             roomTypeSelect.value = 'All';
-            showAllRooms();
+            showAllRooms(); 
             setActiveCategory(allCategory);
         });
         categoryList.prepend(allCategory); 
@@ -49,11 +49,44 @@ fetch('https://hotelbooking.stepprojects.ge/api/Rooms/GetRoomTypes')
 function setActiveCategory(activeCategory) {
     const categoryItems = categoryList.querySelectorAll('li');
     categoryItems.forEach(item => item.classList.remove('active'));
-    
     activeCategory.classList.add('active');
 }
 
+function fetchRoomsByType(roomTypeId) {
+    console.log(`Fetching rooms for room type ID: ${roomTypeId}`);
 
+    fetch(`https://hotelbooking.stepprojects.ge/api/Rooms/GetFiltered?roomTypeId=${roomTypeId}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('Rooms for selected room type:', data);
+            section.innerHTML = ''; 
+
+            if (data && data.length > 0) {
+                data.forEach(room => {
+                    const div = document.createElement('div');
+                    div.classList.add('room');
+                    div.innerHTML = ` 
+                        <div class="room">
+                            <div class="room-image">
+                                <img src="${room.images[0] ? room.images[0].source : 'fallback-image.jpg'}" alt="Room">
+                            </div>
+                            <div class="room-info">
+                                <h3>${room.name}</h3>
+                                <p>€ ${room.pricePerNight} <span>a night</span></p>
+                            </div>
+                            <button onclick="goToDetails(${room.id})" class="book-now">BOOK NOW</button>
+                        </div>
+                    `;
+                    section.appendChild(div);
+                });
+            } else {
+                section.innerHTML = `<p>No rooms match your selected room type</p>`;
+            }
+        })
+        .catch(error => {
+            console.log('Error fetching rooms:', error);
+        });
+}
 
 function showAllRooms() {
     fetch('https://hotelbooking.stepprojects.ge/api/Rooms/GetAll')
@@ -85,6 +118,60 @@ function showAllRooms() {
         });
 }
 
+filterForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const selectedRoomType = roomTypeSelect.value;
+    const formData = new FormData(form);
+    const finalForm = Object.fromEntries(formData);
+    
+    console.log("Form filters:", finalForm); 
+    
+    if (selectedRoomType !== 'All') {
+        finalForm.roomTypeId = selectedRoomType;
+    } else {
+        delete finalForm.roomTypeId;
+    }
+
+    fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetFiltered", {
+        method: "POST",
+        headers: {
+            accept: "text/plain",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(finalForm)
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data);
+        section.innerHTML = ''; 
+
+        if (data && data.length > 0) {
+            data.forEach(room => {
+                const div = document.createElement('div');
+                div.classList.add('room');
+                div.innerHTML = ` 
+                    <div class="room">
+                        <div class="room-image">
+                            <img src="${room.images[0] ? room.images[0].source : 'fallback-image.jpg'}" alt="Room">
+                        </div>
+                        <div class="room-info">
+                            <h3>${room.name}</h3>
+                            <p>€ ${room.pricePerNight} <span>a night</span></p>
+                        </div>
+                        <button onclick="goToDetails(${room.id})" class="book-now">BOOK NOW</button>
+                    </div>
+                `;
+                section.appendChild(div);
+            });
+        } else {
+            section.innerHTML = `<p>No rooms match your filters</p>`;
+        }
+    })
+    .catch(error => {
+        console.log('Error fetching rooms:', error);
+    });
+});
+
 function fetchHotelRooms(hotelId) {
     console.log("Fetching rooms for hotel ID:", hotelId);
 
@@ -94,7 +181,7 @@ function fetchHotelRooms(hotelId) {
             console.log("Fetched Rooms Data for Hotel:", infoData);
 
             let filteredRooms = infoData.rooms;
-            filteredRooms = applyFilters(filteredRooms);
+            // filteredRooms = applyFilters(filteredRooms);
 
             if (filteredRooms.length === 0) {
                 section.innerHTML = `<p>No rooms match your filters</p>`;
@@ -140,9 +227,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const month = String(today.getMonth() + 1).padStart(2, '0');  
     const year = today.getFullYear();
 
-
     const formattedDate = `${year}-${month}-${day}`;
-
 
     flatpickr("#checkIn", {
         dateFormat: "Y-m-d", 
@@ -158,56 +243,13 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-filterForm.addEventListener("submit", function (e) {
-    e.preventDefault();
-    let formData =  new FormData(form)
-    let finalForm = Object.fromEntries(formData)
-    console.log(finalForm); 
-
-    fetch("https://hotelbooking.stepprojects.ge/api/Rooms/GetFiltered",{
-        method:"POST",
-        headers : {
-            accept: "text/plain",
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(finalForm)
-    }).then(res => res.json())
-    .then(data => {
-        console.log(data);
-        section.innerHTML = ''; 
-
-                if (data && data.length > 0) {
-                    data.forEach(room => {
-                        const div = document.createElement('div');
-                        div.classList.add('room');
-                        div.innerHTML = `
-                            <div class="room">
-                                <div class="room-image">
-                                    <img src="${room.images[0] ? room.images[0].source : 'fallback-image.jpg'}" alt="Room">
-                                </div>
-                                <div class="room-info">
-                                    <h3>${room.name}</h3>
-                                    <p>€ ${room.pricePerNight} <span>a night</span></p>
-                                </div>
-                                <button onclick="goToDetails(${room.id})" class="book-now">BOOK NOW</button>
-                            </div>
-                        `;
-                        section.appendChild(div);
-                    });
-                } else {
-                    section.innerHTML = `<p>No rooms match your filters</p>`;
-                }
-            })
-            .catch(error => {
-                console.log('Error fetching rooms:', error);
-            });
-    })
 
 if (!hotelid) {
     showAllRooms();
 } else {
     fetchHotelRooms(hotelid);
 }
+
 window.addEventListener('scroll', () => {
     if (window.scrollY >= 70) {
         header.classList.add('sticky');
@@ -215,7 +257,6 @@ window.addEventListener('scroll', () => {
         header.classList.remove('sticky');
     }
 });
-
 
 window.addEventListener("DOMContentLoaded", () => {
     document.body.style.opacity = "0";
@@ -244,27 +285,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
 const priceFrom = document.getElementById('priceFrom');
 const priceTo = document.getElementById('priceTo');
 const priceFromValue = document.getElementById('priceFromValue');
 const priceToValue = document.getElementById('priceToValue');
+const progress = document.querySelector('.progress');
 
-priceFromValue.value = priceFrom.value;
-priceToValue.value = priceTo.value;
+function updatePriceRangeBackground() {
+    let fromValue = parseInt(priceFrom.value);
+    let toValue = parseInt(priceTo.value);
 
-function updateRange() {
-const min = priceFrom.min;
-const max = priceFrom.max;
+    if (fromValue > toValue) {
+        priceFrom.value = toValue;
+        fromValue = toValue;
+    }
+    if (toValue < fromValue) {
+        priceTo.value = fromValue;
+        toValue = fromValue;
+    }
 
-const percentFrom = ((priceFrom.value - min) / (max - min)) * 100;
-const percentTo = ((priceTo.value - min) / (max - min)) * 100;
+    priceFromValue.value = fromValue;
+    priceToValue.value = toValue;
 
-priceFrom.style.background = `linear-gradient(to right, #dcdcdc  ${percentFrom}% , #007bff ${percentFrom}% , #007bff ${percentTo}% ,#dcdcdc ${percentTo}%)`;
-priceFromValue.value = priceFrom.value;
-priceToValue.value = priceTo.value;
+    const minValue = parseInt(priceFrom.min);
+    const maxValue = parseInt(priceFrom.max);
+    const leftPercent = ((fromValue - minValue) / (maxValue - minValue)) * 100;
+    const rightPercent = ((toValue - minValue) / (maxValue - minValue)) * 100;
+
+    progress.style.left = leftPercent + '%';
+    progress.style.width = (rightPercent - leftPercent) + '%';
+    progress.style.backgroundColor = '75C5CF';
 }
 
-priceFrom.addEventListener('input', updateRange);
-priceTo.addEventListener('input', updateRange);
+priceFrom.addEventListener('input', updatePriceRangeBackground);
+priceTo.addEventListener('input', updatePriceRangeBackground);
 
-updateRange();
+updatePriceRangeBackground();
