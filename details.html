@@ -18,7 +18,7 @@
 <body>
     <header>
         <nav>
-            <ul>
+            <ul class="nav-links">
                 <li class="logo-container">
                     <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
                 </li>
@@ -27,8 +27,12 @@
                 <li><a href="./hotels.html">Hotels</a></li>
                 <li><a href="./bookedRooms.html">Booked Rooms</a></li>
             </ul>
+            <div class="burger-icon">
+                 <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
+                <i class="fas fa-bars"></i>
+            </div>
         </nav>
-    </header>    
+    </header>
     <div class="goTopDiv">
         <i id="goTop" class="fas fa-angle-up"></i>
     </div>
@@ -69,108 +73,109 @@
                 <h2>Room Details</h2>
 
                 <h3>Table overview</h3>
-                <table>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Double Bed
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Free Internet
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Free Newspaper
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                60 square meter
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Beach view
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                2 persons
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Double Bed
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Free Internet
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Breakfast included
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Private Balcony
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Flat Screen TV
-                            </td>
-                            <td>
-                                <i class="fa fa-check-circle"></i>
-                                Jacuzzi
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table">
+    <div class="row">
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Double Bed
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Free Internet
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Free Newspaper
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            60 square meter
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Beach view
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            2 persons
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Double Bed
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Free Internet
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Breakfast included
+        </div>
+    </div>
+    <div class="row">
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Private Balcony
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Flat Screen TV
+        </div>
+        <div class="cell">
+            <i class="fa fa-check-circle"></i>
+            Jacuzzi
+        </div>
+    </div>
+</div>
+
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc ligula nibh, cursus id euismod non,
                     scelerisque nec nibh. Nam semper, ligula a rhoncus fermentum, libero lacus vulputate felis, id
                     auctor mauris urna quis diam.</p>
             </div>
             <div class="Overview">
                 <h2>Overview</h2>
-                <ul>
-                    <li><a href="#Overview">Overview</a></li>
-                    <li><a href="#Facilities">Facilities</a></li>
-                    <li><a href="#Extra">Extra</a></li>
-                </ul>
-                <div id="Overview" class="active">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue,
-                        quis rhoncus purus fermentum. In hendrerit risus arcu, in eleifend metus dapibus varius. Nulla
-                        dolor sapien, laoreet vel tincidunt non, egestas non justo. Phasellus et mattis lectus, et
-                        gravida urna.
-                    </p>
-                    <p class="pFlex">
-                        <img src="https://hotelbooking.stepprojects.ge/images/tab/restaurant-01.jpg" alt="">
-                        Donec pretium sem non tincidunt iaculis. Nunc at pharetra eros, a varius leo. Mauris id
-                        hendrerit justo. Mauris egestas magna vitae nisi ultricies semper. Nam vitae suscipit magna. Nam
-                        et felis nulla. Ut nec magna tortor. Nulla dolor sapien, laoreet vel tincidunt non, egestas non
-                        justo.
-                    </p>
+                <section >
+                    <ul>
+                        <li><a href="#Overview">Overview</a></li>
+                        <li><a href="#Facilities">Facilities</a></li>
+                        <li><a href="#Extra">Extra</a></li>
+                    </ul>
+                    <div id="Overview" class="active">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse interdum eleifend augue,
+                            quis rhoncus purus fermentum. In hendrerit risus arcu, in eleifend metus dapibus varius. Nulla
+                            dolor sapien, laoreet vel tincidunt non, egestas non justo. Phasellus et mattis lectus, et
+                            gravida urna.
+                        </p>
+                        <p class="pFlex">
+                            <img src="https://hotelbooking.stepprojects.ge/images/tab/restaurant-01.jpg" alt="">
+                            Donec pretium sem non tincidunt iaculis. Nunc at pharetra eros, a varius leo. Mauris id
+                            hendrerit justo. Mauris egestas magna vitae nisi ultricies semper. Nam vitae suscipit magna. Nam
+                            et felis nulla. Ut nec magna tortor. Nulla dolor sapien, laoreet vel tincidunt non, egestas non
+                            justo.
+                        </p>
+                    </div>
+                    <div style="display: none;" id="Facilities">
+                        <p>Phasellus sodales justo felis, a vestibulum risus mattis vitae. Aliquam vitae varius elit, non
+                            facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit
+                            amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu
+                            feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis
+                            magna.
+                        </p>    
+                    </div>
+                    <div style="display: none;" id="Extra">
+                        <p>Aa vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa. Vestibulum
+                            luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat auctor
+                            vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat
+                            nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.
+                        </p>
+                    </div>
+                </section>
                 </div>
-                <div style="display: none;" id="Facilities">
-                    <p>Phasellus sodales justo felis, a vestibulum risus mattis vitae. Aliquam vitae varius elit, non
-                        facilisis massa. Vestibulum luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit
-                        amet semper erat auctor vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu
-                        feugiat, nec placerat nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis
-                        magna.
-                    </p>    
-                </div>
-                <div style="display: none;" id="Extra">
-                    <p>Aa vestibulum risus mattis vitae. Aliquam vitae varius elit, non facilisis massa. Vestibulum
-                        luctus diam mollis gravida bibendum. Aliquam mattis velit dolor, sit amet semper erat auctor
-                        vel. Integer auctor in dui ac vehicula. Integer fermentum nunc ut arcu feugiat, nec placerat
-                        nunc tincidunt. Pellentesque in massa eu augue placerat cursus sed quis magna.
-                    </p>
-                </div>
-            </div>
         </div>
         <div class="otherRooms" id="otherRooms">
             <h2>Other Rooms</h2>

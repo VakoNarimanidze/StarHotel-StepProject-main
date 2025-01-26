@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
     showAllHotels(); 
     fetchHotels();     
 });
-document.querySelectorAll('.hotel').forEach(hotel => {
-    hotel.addEventListener('mouseover', () => {
-    });
-    hotel.addEventListener('mouseleave', () => {
-    });
-});
+// document.querySelectorAll('.hotel').forEach(hotel => {
+//     hotel.addEventListener('mouseover', () => {
+//     });
+//     hotel.addEventListener('mouseleave', () => {
+//     });
+// });
 
 function goToHotelRooms(hotelId) {
     sessionStorage.setItem('hotelId', hotelId); 
@@ -95,12 +95,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
     setTimeout(() => {
         document.body.style.opacity = "1";
-
-        const parentOfFiveStars = document.querySelector(".parentOfFiveStars");
-
-        setTimeout(() => {
-            parentOfFiveStars.classList.add("visible");
-        }, 1500); 
     }, 1000); 
 });
 
@@ -121,4 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
             goTopDiv.classList.remove("visible"); 
         }
     });
+});
+const burgerIcon = document.querySelector('.burger-icon');
+const navLinks = document.querySelector('.nav-links');
+
+burgerIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 });

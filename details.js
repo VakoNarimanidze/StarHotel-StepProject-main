@@ -266,3 +266,9 @@ infoIcon.addEventListener("mouseover", function() {
         tooltip.remove();
     });
 });
+const burgerIcon = document.querySelector('.burger-icon');
+const NavLinks = document.querySelector('.nav-links');
+
+burgerIcon.addEventListener('click', () => {
+    NavLinks.classList.toggle('active');
+});

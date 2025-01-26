@@ -15,7 +15,7 @@
     <body>
         <header>
             <nav>
-                <ul>
+                <ul class="nav-links">
                     <li class="logo-container">
                         <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
                     </li>
@@ -24,6 +24,10 @@
                     <li><a href="./hotels.html">Hotels</a></li>
                     <li><a href="./bookedRooms.html">Booked Rooms</a></li>
                 </ul>
+                <div class="burger-icon">
+                     <img src="https://hotelbooking.stepprojects.ge/images/logo-retina.png" alt="">
+                    <i class="fas fa-bars"></i>
+                </div>
             </nav>
         </header>
         <div class="goTopDiv">
@@ -52,42 +56,44 @@
                     </div>
 
 
-                    <div class="roomtype sameWidth">
-                        <label for="">Room Type <i class="fas fa-info"></i></label>
-                        <select name="roomTypeId" id="roomType">
-                            <option value="All">Select Room</option>
-                            <option value="1">Single Room</option>
-                            <option value="2">Double Room</option>
-                            <option value="3">Deluxe Room</option>
-                        </select>
+                    <div class="filterFlex" style="display: flex; gap: 20px; flex-wrap: wrap;">
+                        <div class="roomtype sameWidth">
+                            <label for="">Room Type <i class="fas fa-info"></i></label>
+                            <select name="roomTypeId" id="roomType">
+                                <option value="All">Select Room</option>
+                                <option value="1">Single Room</option>
+                                <option value="2">Double Room</option>
+                                <option value="3">Deluxe Room</option>
+                            </select>
+                        </div>
+    
+                        <div class="formflex checkIn">
+                            <label for="">Check-in <i class="fas fa-info"></i></label>
+                            <input type="date" id="checkIn" name="checkIn" placeholder="Check-in">
+                            <i class="fa-regular fa-calendar-days firstDateIcon"></i>
+                            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                        </div>
+    
+                        <div class="formFlex checkOut">
+                            <label for="">Check-out <i class="fas fa-info"></i></label>
+                            <input type="date" name="checkOut" id="checkOut" placeholder="Check-out">
+                            <i class="fa-regular fa-calendar-days SecondDateIcon"></i>
+                            <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+                        </div>
+    
+                        <div class="formFlex Guest">
+                            <label for="">Guests</label>
+                            <select name="maximumGuests" id="maximumGuests" class="Guests">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            <i class="fas fa-user"></i>
+                        </div>
+    
                     </div>
-
-                    <div class="formflex checkIn">
-                        <label for="">Check-in <i class="fas fa-info"></i></label>
-                        <input type="date" id="checkIn" name="checkIn" placeholder="Check-in">
-                        <i class="fa-regular fa-calendar-days firstDateIcon"></i>
-                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                    </div>
-
-                    <div class="formFlex checkOut">
-                        <label for="">Check-out <i class="fas fa-info"></i></label>
-                        <input type="date" name="checkOut" id="checkOut" placeholder="Check-out">
-                        <i class="fa-regular fa-calendar-days SecondDateIcon"></i>
-                        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-                    </div>
-
-                    <div class="formFlex Guest">
-                        <label for="">Guests</label>
-                        <select name="maximumGuests" id="maximumGuests" class="Guests">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <i class="fas fa-user"></i>
-                    </div>
-
                     <div class="btns">
                         <button class="submit" type="submit">Apply Filters</button>
                         <button class="reset" type="reset">RESET</button>

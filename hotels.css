@@ -80,6 +80,24 @@ nav ul li.active {
 nav ul li.active a {
     color: white;
 }
+.burger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+}
+.nav-links.active li {
+    margin: 20px 0;
+}
 .goTopDiv{
     background-color: rgba(221, 221, 221, 0.5);
     position: fixed;
@@ -151,7 +169,7 @@ footer{
   }
   section .hotel{
     width: 370px;
-    height: 300px;
+    /* height: 300px; */
     background-color:white;
     font-family: "Archivo", serif;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -189,8 +207,7 @@ footer{
     }
     
     .hotel h2 {
-        position: absolute;
-        bottom: 10px; 
+        position: relative;
         left: 50%;
         transform: translateX(-80%);
         transition: transform 0.5s ease, bottom 0.5s ease;
@@ -200,6 +217,7 @@ footer{
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: 500;
         width: 200px;
+        padding: 20px 0;
     }
     
     .viewRooms {
@@ -220,7 +238,7 @@ footer{
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .hotel:hover h2 {
-        transform: translateX(-80%) translateY(-1190%); 
+        transform: translateX(-80%) translateY(-330%); 
         bottom: 60px; 
     }
     .hotel:hover img {
@@ -229,7 +247,78 @@ footer{
     }
     
     .hotel:hover .viewRooms {
-        bottom: 200px; 
+        bottom: 220px; 
         opacity: 1; 
     }
     
+    @media (max-width:780px) {
+        header {
+            padding: 10px;
+        }
+        nav{
+            padding-left: 0;
+            padding-inline: 20px;
+        }
+        .logo-container {
+            padding-right: 10px;
+        }
+        .nav-links {
+            display: none;
+            flex-direction: column;
+            width: 100%;
+            background-color: #333;
+        }
+        .logo-container{
+            display: none;
+        }
+    
+        .burger-icon {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+       
+    
+        .nav-links.active {
+            display: block;
+            height: 100vh;
+            margin-top: 20px;
+        }
+        nav ul {
+            flex-direction: column;
+            margin-left: 0;
+            align-items: center;
+        }
+        nav ul li {
+            margin: 10px 0;
+        }
+        .hotel {
+            width: 100%; 
+        }
+      
+        h2  {
+            font-size: 16px;
+        }
+        .viewRooms {
+            position:static;
+            bottom: 10px; 
+            opacity: 1;
+            transform: translateX(0);
+        }
+    
+        .hotel:hover  img {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+        
+        .hotel:hover .viewRooms {
+            bottom: 0; 
+        }
+    
+        .hotel:hover h2{
+            transform: translateX(0%) translateY(0%); 
+            position: static !important;
+            margin-bottom: 20px;
+            bottom: 0;
+        }
+    }

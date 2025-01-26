@@ -3,7 +3,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* body{
+    overflow: hidden;
+} */
+
 .container{
+    overflow: hidden;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -82,6 +87,24 @@ nav ul li.active {
 
 nav ul li.active a {
     color: white;
+}
+.burger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+}
+.nav-links.active li {
+    margin: 20px 0;
 }
 .goTopDiv{
     background-color: rgba(221, 221, 221, 0.5);
@@ -181,10 +204,18 @@ nav ul li.active a {
     transition: background-color 0.3s;
     border: 2px solid white; 
 }
+.container {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+
 .flex{
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
     margin-top: 50px;
+    margin: 0 auto;
 }
 .formDetails{
     border: 2px solid #CCCCCC;
@@ -239,6 +270,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 ,label,::placeholder, butto
 form div{
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 form input{
     height: 40px;
@@ -324,7 +356,7 @@ form label span i{
   
 .roomDetailsFlex {
     display: flex;
-    width: 1200px;
+    width: 100%;
     margin-top: 40px;
 }
 
@@ -336,10 +368,39 @@ form label span i{
 }
 
 
-.roomDetails td {
-    border-top: 1px solid #CCCCCC; 
-    padding: 10px; 
-    font-size: 15px;
+.table {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #ddd;
+}
+
+.cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.cell i {
+    font-size: 18px;
+    color: #28a745;
+}
+
+.table .row:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.cell {
+    background-color: #fff;
 }
 
 .roomDetails i {
@@ -375,7 +436,7 @@ form label span i{
     margin-bottom: 20px;
 }
 .Overview {
-    width: 800px;
+    width: 100%;
     position: relative;
     margin-left: 30px;
 }
@@ -562,19 +623,29 @@ form label span i{
     bottom: 205px; 
     opacity: 1;
 }
-.otherRooms h2 {
+.otherRooms h2 ,.formDetails h2,
+.roomDetailsFlex h2{
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
     text-align: center;
-    padding: 20px 0;
+    white-space: nowrap; 
+    max-width: 100%;
+    min-width: 300px;
 }
 .otherRooms h2::before,
-.otherRooms h2::after{
+.otherRooms h2::after,
+.formDetails h2::before,
+.formDetails h2::after,
+.roomDetailsFlex h2::before,
+.roomDetailsFlex h2::after{
     content: "";
     background: #CCCCCC;
-    width: 41%;
+    flex-grow: 1;
     height: 1px;
-    display: inline-block; 
-    margin: 0 15px;
-    vertical-align: middle;
+    max-width: 34%; 
+    min-width: 50px; 
+    margin: 0 10px;
 }
 footer{
     background-color: #272727;
@@ -587,4 +658,169 @@ footer{
       color: #A5A5A5;
   }
 
+  @media (max-width:1191px){
+    .carousel-container {
+        width: 100%;
+    }
 
+    .formDetails{
+        width: 100%;
+    }
+    .firstDateIcon,.SecondDateIcon{
+        right: 20px !important;
+    }
+    .SecondDateIcon{
+        top: 40% !important;
+    }
+  }
+  @media (max-width:1130px){
+    .roomDetailsFlex{
+        flex-direction: column;
+    }
+    .Overview section{
+        width: 100%;
+    }
+    .Overview div p{
+        width: 100%;
+    }
+  }
+  @media (max-width: 1024px) {
+
+    .formDetails {
+        padding: 15px;
+    }
+
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+}
+
+@media (max-width:1024px){
+    .Overview h2{
+        text-align: start;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        font-size: 14px;
+        gap: 20px;
+    }
+    .logo-container{
+        display: none;
+    }
+    header {
+        padding: 10px;
+    }
+    nav{
+        padding-left: 0;
+        padding-inline: 20px;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+    }
+    .logo-container{
+        display: none;
+    }
+
+    .burger-icon {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center;
+    }
+   
+
+    .nav-links.active {
+        display: block;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        margin-left: 0;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+    
+    .carousel-container {
+        width: 100%;
+    }
+
+    .goTopDiv {
+        bottom: 20px;
+        right: 10px;
+    }
+
+    .formDetails {
+        padding: 20px;
+    }
+    .row {
+        align-items: flex-start;
+    }
+
+    .cell {
+        margin-bottom: 10px;
+    }
+    .roomDetails h2{
+        text-align: left;
+    }
+    .room {
+        width: 100%; 
+        height: auto;
+    }
+    .room-info h3 {
+        font-size: 14px;
+    }
+    .room-info p {
+        font-size: 16px;
+    }
+    .book-now {
+        position:static;
+        bottom: 10px; 
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .room:hover .room-image img {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    
+    .room:hover .book-now {
+        bottom: 0; 
+    }
+
+    .room:hover .room-info{
+        transform: translateY(0%);
+    }
+    
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        font-size: 12px;
+    }
+
+    .carousel-container {
+        width: 100%;
+    }
+
+    .goTopDiv {
+        bottom: 15px;
+        right: 10px;
+    }
+
+    .formDetails {
+        padding: 10px;
+    }
+    .Overview{
+        margin-left: 0;
+    }
+}

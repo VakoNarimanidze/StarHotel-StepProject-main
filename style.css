@@ -80,6 +80,25 @@ nav ul li.active {
 nav ul li.active a {
     color: white;
 }
+.burger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+}
+.nav-links.active li {
+    margin: 20px 0;
+}
+
 .goTopDiv{
     background-color: rgba(221, 221, 221, 0.5);
     position: fixed;
@@ -401,4 +420,219 @@ footer p{
     padding:40px 0 0 200px;
     font-size: 13px;
     color: #A5A5A5;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 1060px) {
+    .fiveStars {
+        font-size: 30px;
+    }
+    
+}
+/* For Screen Widths <= 1024px */
+@media (max-width: 1024px) {
+    nav ul {
+        margin-left: 20px;
+        width: 80%; 
+    }
+    .nav-links {
+        display: flex;
+    }
+    .rooms-container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .room {
+        width: 320px; 
+        height: auto;
+    }
+    .parentOfFiveStars {
+        margin-left: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .bg-img {
+        height: 40vh; 
+    }
+    .sameWidth {
+        max-width: 100%;
+    }
+}
+
+/* For Screen Widths <= 768px */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+    nav{
+        padding-left: 0;
+        padding-inline: 20px;
+    }
+    .logo-container {
+        padding-right: 10px;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+    }
+    .logo-container{
+        display: none;
+    }
+
+    .burger-icon {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+   
+
+    .nav-links.active {
+        display: block;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        margin-left: 0;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+    .room {
+        width: 100%; 
+        height: auto;
+    }
+    .room-info h3 {
+        font-size: 14px;
+    }
+    .room-info p {
+        font-size: 16px;
+    }
+    .book-now {
+        position:static;
+        bottom: 10px; 
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .room:hover .room-image img {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+    
+    .room:hover .book-now {
+        bottom: 0; 
+    }
+
+    .room:hover .room-info{
+        transform: translateY(0%);
+    }
+    
+    .parentOfFiveStars {
+        margin-left: 0;
+        opacity: 1;
+        transform: translateY(0);
+    }
+    h2{
+        margin: 0;
+    }
+    h2::before, h2::after{
+        width: 30%;
+    }
+}
+@media screen and (max-width: 568px) {
+    .nav-links li {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 568px) {
+    .fiveStars {
+        font-size: 30px;
+    }
+    h2::before, h2::after {
+        width: 20%;
+    }
+
+}
+
+/* For Screen Widths <= 480px */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    .fiveStars{
+        font-size: 20px;
+    }
+    .logo-container {
+        padding-right: 5px;
+    }
+    h2::before, h2::after {
+        width: 15%;
+    }
+    nav ul {
+        flex-direction: column;
+        margin-left: 0;
+        align-items: center;
+    }
+    .goTopDiv {
+        right: 20px;
+        bottom: 50px;
+        width: 40px;
+        height: 40px;
+    }
+    .goTopDiv i {
+        font-size: 14px;
+    }
+    .bg-img {
+        height: 35vh; 
+    }
+    .room {
+        width: 100%; 
+    }
+    .room-image img {
+        height: auto;
+    }
+    .card {
+        width: 90%; 
+    }
+    .sameWidth {
+        max-width: 100%;
+    }
+    footer p {
+        font-size: 12px; 
+        padding: 20px;
+    }
+}
+@media (max-width: 450px) {
+    .logo-container img {
+        width: 120px;
+    }
+    .fiveStars {
+        font-size: 14px;
+    }
+    .SecondP{
+        font-size: 20px !important;
+    }
+    .parentOfFiveStars button {
+        padding: 10px 15px;
+        font-size: 12px;
+    }
+    h2{
+        font-size: 20px;
+    }
+    .UspSectionCardsContainer{
+        gap: 0;
+    }
+}
+
+@media  (max-width: 394px) {
+    .logo-container img {
+        width: 100px;
+    }
+    .fiveStars i{
+        font-size: 15px !important;
+    }
 }
