@@ -85,6 +85,9 @@ nav ul li.active a {
     font-size: 30px;
     cursor: pointer;
 }
+.nav-links{
+    z-index: 1000;
+}
 
 .nav-links.active {
     display: block;
@@ -94,6 +97,7 @@ nav ul li.active a {
     width: 100%;
     background-color: #333;
     text-align: center;
+    z-index: 9999;
 }
 .nav-links.active li {
     margin: 20px 0;
@@ -112,6 +116,7 @@ nav ul li.active a {
     bottom: 70px;
     opacity: 0;
     transition: 1s ease;
+    z-index: 10;
 }
 .goTopDiv.visible {
     opacity: 1; 
@@ -169,7 +174,6 @@ footer{
   }
   section .hotel{
     width: 370px;
-    /* height: 300px; */
     background-color:white;
     font-family: "Archivo", serif;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
@@ -208,16 +212,14 @@ footer{
     
     .hotel h2 {
         position: relative;
-        left: 50%;
-        transform: translateX(-80%);
         transition: transform 0.5s ease, bottom 0.5s ease;
         z-index: 2; 
         font-size: 14px;
         color: #5E5E5E;
         font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         font-weight: 500;
-        width: 200px;
-        padding: 20px 0;
+        width: 100%;
+        padding-top: 20px;
     }
     
     .viewRooms {
@@ -238,7 +240,7 @@ footer{
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     .hotel:hover h2 {
-        transform: translateX(-80%) translateY(-330%); 
+        transform: translateY(-570%); 
         bottom: 60px; 
     }
     .hotel:hover img {
@@ -295,15 +297,29 @@ footer{
         .hotel {
             width: 100%; 
         }
+       section .hotel img {
+            height: auto;
+        }
       
-        h2  {
-            font-size: 16px;
+        .hotel h2  {
+            font-size: 24px;
+            bottom: 0;
+            left: 0;
+            position: static !important;
+        }
+        ul{
+            margin-left: 0;
+        }
+       section .hotel{
+            width: 100%;
+            height: auto;
         }
         .viewRooms {
             position:static;
-            bottom: 10px; 
             opacity: 1;
             transform: translateX(0);
+            margin-top: 20px;
+
         }
     
         .hotel:hover  img {
@@ -318,7 +334,12 @@ footer{
         .hotel:hover h2{
             transform: translateX(0%) translateY(0%); 
             position: static !important;
-            margin-bottom: 20px;
             bottom: 0;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .hotel h2 {
+            font-size: 17px;
         }
     }
