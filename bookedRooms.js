@@ -1,4 +1,4 @@
-const table = document.querySelector("table");
+const section = document.getElementsByClassName("container")
 const header = document.querySelector("header");
 
 async function fetchRoomDetails(roomID) {
@@ -28,74 +28,100 @@ async function fetchBookings() {
     try {
         const response = await fetch("https://hotelbooking.stepprojects.ge/api/Booking");
         const data = await response.json();
-        console.log("Booking items:", data);
+
+        console.log("Booking items:", data);  // Log the booking data
+
+        const section = document.querySelector(".container");
+        
+        // Check if the section is found and available
+        if (!section) {
+            console.error("Container not found");
+            return;
+        }
+
+        if (!data || data.length === 0) {
+            console.log("No bookings found.");
+            return;
+        }
 
         for (const item of data) {
             const roomDetails = await fetchRoomDetails(item.roomID);
             const hotelDetails = await fetchHotelDetails(roomDetails?.hotelID); 
+
+            console.log(`Fetched room details for booking ${item.id}:`, roomDetails);
+            console.log(`Fetched hotel details for booking ${item.id}:`, hotelDetails);
 
             if (!roomDetails || !hotelDetails) {
                 console.error("Missing room or hotel details for booking:", item);
                 continue;
             }
 
-            // Format the check-in and check-out dates
             const formattedCheckInDate = new Date(item.checkInDate).toLocaleDateString();
             const formattedCheckOutDate = new Date(item.checkOutDate).toLocaleDateString();
 
-            const row = document.createElement("tr");
-
-            row.innerHTML = `
-                <td>
-                    <div>
-                        <!-- Use a fallback value for missing hotel image -->
-                        <img class="hotelImg" src="${hotelDetails.featuredImage || ''}" alt="${hotelDetails.name || 'Hotel'}">
+            section.innerHTML += `
+                <div class="hotelBooking">
+                    <div class="row header">
+                        <div class="col">Hotel</div>
+                        <div class="col">Room</div>
+                        <div class="col">Customer</div>
+                        <div class="col">Status</div>
+                        <div class="col">Check In</div>
+                        <div class="col">Check Out</div>
+                        <div class="col">Total Price</div>
+                        <div class="col">Actions</div>
                     </div>
-                    <div>
-                        <p class="hotelName">${hotelDetails.name || 'Hotel Name'}</p>
-                        <p class="city">${hotelDetails.city || 'City'}</p>
+                    <div class="row">
+                        <div class="col">
+                            <div>
+                                <img class="hotelImg" src="${hotelDetails.featuredImage || ''}" alt="${hotelDetails.name || 'Hotel'}">
+                            </div>
+                            <div>
+                                <p class="hotelName">${hotelDetails.name || 'Hotel Name'}</p>
+                                <p class="city">${hotelDetails.city || 'City'}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <img class="roomImg" src="${roomDetails.images[0].source}" alt="${roomDetails.name || 'Room'}">
+                            </div>
+                            <div>
+                                <p class="roomName">${roomDetails.name}</p>
+                                <p class="roomPrice">${roomDetails.pricePerNight} €</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div>
+                                <p class="CustomerName">Name: ${item.customerName}</p>
+                                <p class="CustomerPhoneNum">Phone: ${item.customerPhone}</p>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <span class="status">${item.isConfirmed ? 'Booked' : ''}</span>
+                        </div>
+                        <div class="col checkIn">
+                            ${formattedCheckInDate}
+                        </div>
+                        <div class="col checkOut">
+                            ${formattedCheckOutDate}
+                        </div>
+                        <div class="col TotalPrice">
+                            ${item.totalPrice}
+                        </div>
+                        <div class="col">
+                            <button onclick="cancelBooking(${item.id})" class="CancelBtn">
+                                Cancel Booking
+                            </button>
+                        </div>
                     </div>
-                </td>
-                <td>
-                    <div>
-                        <img class="roomImg" src="${roomDetails.images[0].source}" alt="${roomDetails.name || 'Room'}">
-                    </div>
-                    <div>
-                        <p class="roomName">${roomDetails.name}</p>
-                        <p class="roomPrice">${roomDetails.pricePerNight} €</p>
-                    </div>
-                </td>
-                <td>
-                    <div>
-                        <p class="CostomerName">Name: ${item.customerName}</p>
-                        <p class="CostomerPhoneNum">Phone: ${item.customerPhone}</p>
-                    </div>
-                </td>
-                <td>
-                    <span class="status">${item.isConfirmed ? 'Booked' : ''}</span>
-                </td>
-                <td class="checkIn">
-                    ${formattedCheckInDate}
-                </td>
-                <td class="checkOut">
-                    ${formattedCheckOutDate}
-                </td>
-                <td class="TotalPrice">
-                    ${item.totalPrice}
-                </td>
-                <td>
-                    <button onclick="cancelBooking(${item.id})" class="CancelBtn">
-                        Cancel Booking
-                    </button>
-                </td>
+                </div>
             `;
-
-            table.appendChild(row);
         }
     } catch (error) {
         console.error("Error fetching bookings:", error);
     }
 }
+
 
 async function cancelBooking(bookingID) {
     try {
@@ -161,4 +187,10 @@ document.addEventListener("DOMContentLoaded", () => {
             goTopDiv.classList.remove("visible"); 
         }
     });
+});
+const burgerIcon = document.querySelector('.burger-icon');
+const navLinks = document.querySelector('.nav-links');
+
+burgerIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
 });

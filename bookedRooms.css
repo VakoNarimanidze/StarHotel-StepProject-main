@@ -83,6 +83,24 @@ nav ul li a:hover {
 nav ul li.active a {
     color: #75C5CF;
 }
+.burger-icon {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.nav-links.active {
+    display: block;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    text-align: center;
+}
+.nav-links.active li {
+    margin: 20px 0;
+}
 .goTopDiv{
     background-color: rgba(221, 221, 221, 0.5);
     position: fixed;
@@ -97,6 +115,7 @@ nav ul li.active a {
     bottom: 70px;
     opacity: 0;
     transition: 1s ease;
+    z-index: 100;
 }
 .goTopDiv.visible {
     opacity: 1; 
@@ -122,45 +141,167 @@ nav ul li.active a {
         opacity: 0;
     }
 }
-table {
-    margin-top: 50px;
-    width: 100%;
-    border-collapse: collapse;
+/* General Layout */
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
-table, th, td {
-    border-bottom: 1px solid #ddd;
+.hotelBooking {
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-th, td {
+.header, .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.col {
+    flex: 1 1 12%;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
-.hotelImg, .roomImg {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
+/* Header Row */
+.header {
+    font-weight: bold;
+    background-color: #f4f4f4;
+    color: #333;
+    border-radius: 8px;
+    text-transform: uppercase;
 }
 
-button.CancelBtn {
-    background-color: red;
-    color: white;
+.col img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Booking Row Styles */
+.row {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 10px;
+}
+
+.roomName, .hotelName {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.roomPrice {
+    color: #007BFF;
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.status {
+    font-size: 1em;
+    font-weight: bold;
+    color: #28a745;
+}
+
+.checkIn, .checkOut {
+    font-size: 1em;
+    color: #888;
+}
+
+.TotalPrice {
+    font-size: 1.2em;
+    color: #dc3545;
+    font-weight: bold;
+}
+
+.CustomerName, .CustomerPhoneNum {
+    font-size: 1em;
+    color: #333;
+}
+
+/* Cancel Button Styles */
+.CancelBtn {
+    background-color: #dc3545;
+    color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button.CancelBtn:hover {
-    background-color: darkred;
+.CancelBtn:hover {
+    background-color: #c82333;
 }
-footer{
-    background-color: #272727;
-    color: white;
-    height: 80px;
-  }
-  footer p{
-      padding:40px 0 0 200px;
-      font-size: 13px;
-      color: #A5A5A5;
-  }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header, .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col {
+        flex: 1 1 100%;
+        padding: 5px;
+    }
+
+    .hotelImg, .roomImg {
+        width: 80px;
+        height: 80px;
+    }
+    nav ul {
+        font-size: 14px;
+        gap: 20px;
+    }
+    .logo-container{
+        display: none;
+    }
+    header {
+        padding: 10px;
+    }
+    nav{
+        padding-left: 0;
+        padding-inline: 20px;
+    }
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #333;
+    }
+    .logo-container{
+        display: none;
+    }
+
+    .burger-icon {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center;
+    }
+   
+
+    .nav-links.active {
+        display: block;
+        height: 100vh;
+        margin-top: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        margin-left: 0;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 10px 0;
+    }
+}

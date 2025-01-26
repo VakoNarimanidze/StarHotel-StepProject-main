@@ -113,6 +113,7 @@ nav ul li.active a {
     bottom: 70px;
     opacity: 0;
     transition: 1s ease;
+    z-index: 100;
 }
 .goTopDiv.visible {
     opacity: 1; 
