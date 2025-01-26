@@ -243,6 +243,16 @@ nav ul li.active a {
 .CancelBtn:hover {
     background-color: #c82333;
 }
+footer{
+    background-color: #272727;
+    color: white;
+    height: 80px;
+  }
+  footer p{
+      padding:40px 0 0 200px;
+      font-size: 13px;
+      color: #A5A5A5;
+  }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
