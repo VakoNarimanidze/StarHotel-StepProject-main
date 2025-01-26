@@ -299,6 +299,12 @@ form button{
 input[type="date"]{
     position: relative;
 }
+.flatpickr-input {
+    width: 100% !important;
+    max-width: 400px;
+    min-width: 280px;
+    box-sizing: border-box;
+}
 form div .firstDateIcon {
     position: absolute;
     top: 40.5%;
@@ -408,21 +414,6 @@ form label span i{
     font-size: 13px;
 }
 
-
-.roomDetails h2 {
-    text-align: center;
-    padding: 20px 0;
-}
-.roomDetails h2::before,
-.roomDetails h2::after{
-    content: "";
-    background: #CCCCCC;
-    width: 34.5%;
-    height: 1px;
-    display: inline-block; 
-    margin: 0 15px;
-    vertical-align: middle;
-}
 .roomDetails p{
     margin-top: 40px;
     margin-left: 15px;
@@ -439,20 +430,6 @@ form label span i{
     width: 100%;
     position: relative;
     margin-left: 30px;
-}
-.Overview h2 {
-    text-align: center;
-    padding: 20px 0;
-}
-.Overview h2::before,
-.Overview h2::after{
-    content: "";
-    background: #CCCCCC;
-    width: 30.5%;
-    height: 1px;
-    display: inline-block; 
-    margin: 0 15px;
-    vertical-align: middle;
 }
 .pFlex{
     display: flex;
