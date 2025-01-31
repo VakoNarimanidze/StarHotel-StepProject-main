@@ -609,6 +609,9 @@ input[type="date"] {
     .room:hover .room-info{
         transform: translateY(0%);
     }
+    .room:nth-last-child(1){
+        margin-bottom: 50px;
+    }
 }
 
 @media (max-width: 480px) {
